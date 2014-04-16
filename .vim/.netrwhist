@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/jllull/projects/habitissimo/lib/model/migration'
+let g:netrw_dirhist_2='/etc/nginx'
+let g:netrw_dirhist_3='/home/jllull/tmp/codigo/css'
+let g:netrw_dirhist_4='/home/jllull/projects/habitissimo/lib/model/migration'
+let g:netrw_dirhist_5='/home/jllull/projects/habitissimo/config/deploy/es/config'
+let g:netrw_dirhist_6='/home/jllull/projects/habitissimo/tools/fabric'
+let g:netrw_dirhist_7='/home/jllull/projects/habitissimo/lib/model/migration'
