@@ -27,17 +27,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\h\[\033[00m\]:\w\$ '
-    ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    ;;
-esac
-
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -54,6 +43,18 @@ esac
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Colors depending on host
+if [ `hostname` == tremere -o `hostname` == daisy ]; then
+    # Green
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u\[\033[00;32m\]@\[\033[00;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+elif [ `hostname` == yoshi -o `hostname` == hal -o `hostname` == wopr -o `hostname` == glados ]; then
+    # Red
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u\[\033[00;31m\]@\[\033[00;31m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    # Yellow
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;33m\]\u\[\033[00;33m\]@\[\033[00;33m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi;
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
@@ -75,16 +76,13 @@ alias symfshell='cd ~/projects/habitissimo && phpsh symfony-interactive.php'
 
 alias nano='vi'
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-
 # TIG options
 export TIG_DIFF_OPTS="-w"
 
 # Spotify with limited bandwithd
 alias spotify='trickle -s -u 200 -d 0 -w 64 -t 0.1 -l 10 /usr/bin/spotify'
 
-alias mystatus='watch -tc -n 1 "mysqladmin -uroot -pXXXXXXX status && mysqladmin -uroot -pXXXXXX processlist && echo && df -Th -xtmpfs -xdevtmpfs"'
+alias mystatus='watch -tc -n 1 "mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD status && mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD processlist && echo && df -Th -xtmpfs -xdevtmpfs"'
 
 # ssh-agent
 #GREP=/bin/grep
@@ -108,4 +106,4 @@ alias cdhab="cd ~/projects/habitissimo"
 
 alias cdquo="cd ~/projects/quotation123"
 
-alias phpunit="phpunit --colors"
+alias phpunit="phpunit --colors" 
