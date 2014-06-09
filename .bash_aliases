@@ -5,7 +5,7 @@ export TERM=xterm
 alias ll="ls -lh"
 alias lla="ls -lha"
 alias l="ls" 
-alias less="less --colors"
+#alias less="less --colors"
 
 # system command aliases
 alias mkdir='mkdir -p'
