@@ -13,17 +13,8 @@ alias grep='grep --color=tty'
 
 # custom aliases
 alias sudo="sudo -E" # preserve environment by default
-alias prettylog="awk '{print \$2,\"\t\",\$5\"]\",\$7,\$10,\$8,\$11}'"
-alias proxyssh="ssh -N -D 0.0.0.0:12345 $1"
-alias star_treck="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
-alias nap_noise="play -t sl -r48000 -c2 - synth -1 pinknoise tremolo .1 40 < /dev/zero"
 alias ssh="( ssh-add -l > /dev/null || ssh-add ) && ssh"
-alias updick='/usr/bin/uptime | perl -ne "/(\d+) d/;print 8,q(=)x\$1,\"D\n\""'
-
-
-# Add an "alert" alias for long running commands. Use like so:
-# sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias gitfuckers="git grep -in fuck | awk -F: '{ print \"git blame \"\$1\" -L \" \$2\",\"\$2}' | bash"
 
 
 # load git-achievemnts if available
