@@ -1,10 +1,10 @@
-export EDITOR=vim 
+export EDITOR=vim
 export SSH_AUTH_SOCK=0
 export TERM=xterm
 
 alias ll="ls -lh"
 alias lla="ls -lha"
-alias l="ls" 
+alias l="ls"
 #alias less="less --colors"
 
 # system command aliases
@@ -14,7 +14,7 @@ alias grep='grep --color=tty'
 # custom aliases
 alias sudo="sudo -E" # preserve environment by default
 alias ssh="( ssh-add -l > /dev/null || ssh-add ) && ssh"
-alias gitfuckers="git grep -in fuck | awk -F: '{ print \"git blame \"\$1\" -L \" \$2\",\"\$2}' | bash"
+alias gitfuckers="git grep -in fuck | grep -v 'Binary file' | awk -F: '{ print \"git --no-pager blame \"\$1\" -L \"\$2 \",\"\$2 }'  | bash"
 
 
 # load git-achievemnts if available
