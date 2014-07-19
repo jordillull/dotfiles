@@ -85,22 +85,8 @@ alias spotify='trickle -s -u 200 -d 0 -w 64 -t 0.1 -l 10 /usr/bin/spotify'
 alias mystatus='watch -tc -n 1 "mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD status && mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD processlist && echo && df -Th -xtmpfs -xdevtmpfs"'
 
 # ssh-agent
-#GREP=/bin/grep
-#test=`/bin/ps -ef | $GREP ssh-agent | $GREP -v gnome-session-xmonad | $GREP -v defunct | $GREP -v grep | /usr/bin/awk '{print $2}' | xargs`
-#
-#if [ "$test" = "" ]; then
-#   # there is no agent running
-#   if [ -e "$HOME/agent.sh" ]; then
-#      # remove the old file
-#      /bin/rm -f $HOME/agent.sh
-#   fi;
-#   # start a new agent
-#   /usr/bin/ssh-agent | $GREP -v echo >&$HOME/agent.sh
-#fi;
-
-test -e $HOME/agent.sh && source $HOME/agent.sh
-
-alias kagent="kill -9 $SSH_AGENT_PID"
+keychain -q -Q
+. ~/.keychain/$HOSTNAME-sh
 
 alias cdhab="cd ~/projects/habitissimo"
 
